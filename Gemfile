@@ -65,7 +65,7 @@ group :test do
   # Using Rspec as testing framework 
   gem 'rspec-rails', '~> 3.6'
   # Using Factory_girl for adding sample data
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   # Using raails-controller-testing to test requests and responses
   gem 'rails-controller-testing'
   # Using poltergeist to give JavaScript support to test
