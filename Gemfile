@@ -62,6 +62,18 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  # Using Rspec as testing framework 
+  gem 'rspec-rails', '~> 3.6'
+  # Using Factory_girl for adding sample data
+  gem 'factory_girl_rails'
+  # Using raails-controller-testing to test requests and responses
+  gem 'rails-controller-testing'
+  # Using poltergeist to give JavaScript support to test
+  gem 'poltergeist'
+  # Using headless to support headless drivers
+  gem 'headless'
+  # Using databse_cleaner to clean test database after tests where Javascript was executed
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
