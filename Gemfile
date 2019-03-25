@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
+gem 'bootstrap_form'
 #Use devise for authentication
 gem 'devise'
 # Use Puma as the app server
