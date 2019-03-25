@@ -86,5 +86,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   Capybara.javascript_driver = :poltergeist
   Capybara.server = :puma
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, {js_errors: false})
+  end
 end
 
