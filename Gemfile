@@ -10,6 +10,8 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
 gem 'bootstrap_form'
+#Use Faker to generate dummy text
+gem 'faker'
 #Use devise for authentication
 gem 'devise'
 # Use Puma as the app server
