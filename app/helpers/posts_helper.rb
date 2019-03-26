@@ -4,7 +4,7 @@ module PostsHelper
     if user_signed_in?
       'posts/branch/create_new_post/signed_in'
     else
-      'post/branch/create_new_post/not_signed_in'
+      'posts/branch/create_new_post/not_signed_in'
     end
   end
   
