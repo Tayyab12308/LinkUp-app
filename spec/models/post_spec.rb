@@ -23,7 +23,7 @@ RSpec.describe Post, type: :model do
     
     it 'by_category scope get posts by particular category' do
       category = create(:category)
-      create(:post, category_id: category_id)
+      create(:post, category_id: category.id)
       create_list(:post, 10)
       posts = Post.by_category(category.branch, category.name)
       expect(posts.count).to eq 1
@@ -32,7 +32,7 @@ RSpec.describe Post, type: :model do
     
     it 'by_branch scope get posts by particular branch' do
       category = create(:category)
-      create(:post, category_id: category_id)
+      create(:post, category_id: category.id)
       create_list(:post, 10)
       posts = Post.by_branch(category.branch)
       expect(posts.count).to eq 1
