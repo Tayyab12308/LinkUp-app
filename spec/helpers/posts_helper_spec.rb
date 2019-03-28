@@ -36,7 +36,7 @@ RSpec.describe PostsHelper, :type => :helper do
   context '#no_posts_partial_path' do
     it "returns a no_posts partial's path" do
       expect(helper.no_posts_partial_path([])).to (
-        eq 'posts/branch/no_posts'
+        eq 'shared/no_posts'
       )
     end
     
