@@ -11,6 +11,7 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
 gem 'bootstrap_form'
 gem 'will_paginate', '~> 3.1.0'
+gem 'gon'
 #Use Faker to generate dummy text
 gem 'faker'
 #Use devise for authentication
