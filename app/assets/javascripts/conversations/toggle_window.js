@@ -10,3 +10,10 @@ $(document).on('turbolinks:load', function() {
                   });
                 });
 });
+
+panel_body.toggle(100, function () {
+  var messages_visible = $('ul', this).has('li').length;
+  if(!messages_visible && $('.load-more-messages', this).length) {
+    $('.load-more-messages', this)[0].click();
+  } 
+})
