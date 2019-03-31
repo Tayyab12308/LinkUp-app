@@ -1,7 +1,7 @@
 <% @recipient = private_conv_recipient(conversation) %>
 <% @is_messenger = false %>
 <li class="conversation-window"
-    id="ps<%= conversation.id %>"
+    id="pc<%= conversation.id %>"
     data-pconversation-user-name="<%= @recipient.name %>"
     data-turbolinks-permanent>
   <div class="panel panel-default" data-pconversation-id="<%= conversation.id %>">

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
   before_action :opened_conversations_windows
   
   def redirect_if_not_signed_in
@@ -10,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   def opened_conversations_windows
-    if user_signed_in?
+    if (user_signed_in? && @private_conversations)
       session[:private_conversations] ||= []
       @private_conversations_windows = Private::Conversation.includes(:recipient, :messages)
                                         .find(session[:private_conversations])
