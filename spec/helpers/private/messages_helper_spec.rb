@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe Private::MessagesHelper :type => :helper do
+RSpec.describe Private::MessagesHelper, type: :helper do
   
   context '#private_message_date_check' do
     let(:message) { create(:private_message)}
@@ -41,7 +41,7 @@ RSpec.describe Private::MessagesHelper :type => :helper do
   end
   
   context '#seen_or_unseen' do
-    let(:message) { create(:previous_message) }
+    let(:message) { create(:private_message) }
     it 'returns unseen' do
       message.update(seen: false)
       expect(helper.seen_or_unseen(message)).to eq 'unseen'

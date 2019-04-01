@@ -7,7 +7,7 @@ RSpec.describe Private::ConversationsHelper, type: :helper do
     let(:conversation) { create(:private_conversation) }
     
     it "returns load_message partial's path" do
-      create(:private_message, conversation_id: conversation_id)
+      create(:private_message, conversation_id: conversation.id)
       expect(helper.load_private_messages(conversation)).to eq (
         'private/conversations/conversation/messages_list/link_to_previous_messages'
       )
