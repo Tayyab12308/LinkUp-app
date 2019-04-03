@@ -39,6 +39,9 @@ App.private_conversation = App.cable.subscriptions.create("Private::Conversation
     return this.perform('send_message', {
       message: message
     });
+  },
+  set_as_seen: function(conv_id) {
+    return this.perform('set_as_seen', {conv_id: conv_id });
   }
 });
 
@@ -47,4 +50,22 @@ $(document).on('submit', '.send-private-message', function(e) {
     var values = $(this).serializeArray();
     App.private_conversation.send_message(values);
     $(this).trigger('reset');
+});
+
+$(document).on('click', '.conversation-window, .private-conversation', function(e) {
+  var latest_message = $('.messages-list ul li:last .row div', this);
+  if (latest_message.hasClass('message-received') && latest_message.hasClass('unseen')) {
+    var conv_id = $(this).find('.panel').attr('data-pconversation-id');
+    if(conv_id == null) {
+      var conv_id = $(this).find('.messages-list').attr('data-pconversation-id');
+    }
+    latest_message.removeClass('unseen');
+    $('#menu-pc' + conv_id).removeClass('unseen-conv');
+    calculateUnseenConversations();
+    App.private_conversation.set_as_seen(conv_id)
+  }
+});
+
+$(document).on('turbolinks:load', function (){
+  calculateUnseenConversations();
 });
