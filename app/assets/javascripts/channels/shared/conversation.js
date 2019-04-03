@@ -1,8 +1,9 @@
+// finds a conversation in the DOM
 function findConv(conversation_id, type) {
     var messenger_conversation = $('body .conversation');
     if (messenger_conversation.length) {
         return messenger_conversation;
-    } else {
+    } else { 
         var data_attr = "[data-" + type + "conversation-id='" + 
                          conversation_id + 
                          "']";

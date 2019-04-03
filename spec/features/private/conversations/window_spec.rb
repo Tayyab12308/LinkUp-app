@@ -1,11 +1,11 @@
 require "rails_helper"
 RSpec.feature "window", :type => :feature do
   let(:user) { create(:user) }
-  let(:conversation) { create(:private_converation, sender_id: user.id) }
+  let(:conversation) { create(:private_conversation, sender_id: user.id) }
   let(:open_window) do
     sign_in user
     visit root_path
-    find('#conversations-menu .dropdown-toggle').trigger('click')
+    find('#conversations-menu .dropdown-toggle').click
     find('#conversations-menu li a').click
     expect(page).to have_selector('.conversation-window')
   end
@@ -26,10 +26,10 @@ RSpec.feature "window", :type => :feature do
   
   scenario 'user sends a message', js: true do
     open_window
+    expect(page).to have_selector('.conversation-window .messages-list li', count: 0)
+    find('.conversation-window textarea').fill_in 'body', with: 'hey, bro'
+    find('.conversation-window form .send-message', visible: false).click
     expect(page).to have_selector('.conversation-window .messages-list li', count: 1)
-    find('.conversation-window').fill_in 'body', with: 'hey, bro'
-    find('.conversation-window form .send-message', visible: false).trigger('click')
-    expect(page).to have_selector('.conversation-window .messages-list li', count: 2)
   end
   
   scenario 'user collapses and expands a conversation window' do

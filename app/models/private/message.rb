@@ -1,6 +1,6 @@
 class Private::Message < ApplicationRecord
   self.table_name = 'private_messages'
-  after_create_commit do
+  after_create_commit do 
     Private::MessageBroadcastJob.perform_later(self, previous_message)
   end
   belongs_to :user
