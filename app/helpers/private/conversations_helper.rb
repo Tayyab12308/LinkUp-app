@@ -26,7 +26,7 @@ include Shared::ConversationsHelper
     contact = Contact.find_by_users(current_user.id, recipient.id)
   end
   
-  def conv_heading_class
+  def conv_heading_class(contact)
     if unaccepted_contact_exists(contact)
       'conversation-heading-full'
     else
@@ -61,7 +61,7 @@ include Shared::ConversationsHelper
     contacts.find {|contact| contact['id'] == @recipient.id}.present?
   end
   
-  def non_contact
+  def non_contact(contact)
     if unaccepted_contact_exists(contact)
       'shared/empty_partial'
     else
