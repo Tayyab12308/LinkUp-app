@@ -8,15 +8,23 @@ class Group::ConversationsController < ApplicationController
     end
   end
   
+  def open
+    @conversation = Group::Conversation.find(params[:id])
+    add_to_conversations unless already_added?
+    respond_to do |format|
+      format.js { render partial: 'group/conversations/open' }
+    end
+  end
+  
   private
   
   def add_to_conversations
-    session[:group_conversation] ||= []
-    session[:group_conversation] << @conversation.id
+    session[:group_conversations] ||= []
+    session[:group_conversations] << @conversation.id
   end
   
   def already_added?
-    session[:group_conversation].include?(@conversation.id)
+    session[:group_conversations].include?(@conversation.id)
   end
   
   def create_group_conversation
