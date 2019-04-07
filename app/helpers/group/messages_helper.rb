@@ -37,6 +37,7 @@ module Group::MessagesHelper
       end
     else
       'group/messages/message/different_user_content'
+    end
   end
   
   def seen_by_user?

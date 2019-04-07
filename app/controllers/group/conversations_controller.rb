@@ -18,7 +18,7 @@ class Group::ConversationsController < ApplicationController
   
   def close
     @conversation = Group::Conversation.find(params[:id])
-    session[:group_conversation].delete(@conversation.id)
+    session[:group_conversations].delete(@conversation.id)
     respond_to do |format|
       format.js
     end
@@ -26,8 +26,8 @@ class Group::ConversationsController < ApplicationController
   
   def update
     Group::AddUserToConversationService.new({
-      conversation_id: params[:id]
-      new_user_id: params[:user][:id]
+      conversation_id: params[:id],
+      new_user_id: params[:user][:id],
       added_by_id: params[:added_by]
     }).call
   end

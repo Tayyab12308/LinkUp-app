@@ -1,7 +1,7 @@
 class Group::ConversationChannel < ApplicationCable::Channel
   def subscribed
     if belongs_to_conversation(params[:id])
-      stream_from "group_conversation_#{params[:id}"
+      stream_from "group_conversation_#{params[:id]}"
     end
   end
 

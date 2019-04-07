@@ -278,8 +278,8 @@ textarea {
     position: relative;
   }
   .hidden-item {
-    position: absolute;
-    left: 0;
+    position: absolute; 
+    left: 0; 
     vertical-align: middle;
     line-height: 20px;
     visibility: hidden;
@@ -303,7 +303,7 @@ textarea {
   }
   .message-time {
     padding-left: 2px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0,0,0,0.5);
   }
   &:hover .message-time {
     visibility: visible;
