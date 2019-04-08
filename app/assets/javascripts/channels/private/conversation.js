@@ -18,34 +18,50 @@ App.private_conversation = App.cable.subscriptions.create("Private::Conversation
                                             conversation_menu_link);
             }
             $('#menu-pc' + data['conversation_id']).addClass('unseen-conv');
-            // if conversation window exists
             if (conversation_rendered) {
                 if (!messages_visible) {
-
                 }
                 conversation.find('.messages-list').find('ul').append(data['message']);
             }
             calculateUnseenConversations();
         }
         else {
+            if ($('#conversations-menu').length) {
+                newPrivateConvMenuListLink('sender_info', 
+                                            data['conversation_id'],
+                                            conversation_menu_link);
+            }
             conversation.find('ul').append(data['message']);
         }
-
         if (conversation.length) {
             var messages_list = conversation.find('.messages-list');
             var height = messages_list[0].scrollHeight;
             messages_list.scrollTop(height);
         }
-  },
-  send_message: function(message) {
-    return this.perform('send_message', {
-      message: message
-    });
-  },
-  set_as_seen: function(conv_id) {
-    return this.perform('set_as_seen', {conv_id: conv_id });
-  }
+        function newPrivateConvMenuListLink(user, conversation_id, conversation_menu_link) {
+            if (conversation_menu_link.length == 0) {
+                var data_attr = '<li id="menu-pc' + conversation_id + '">\
+                                     <a data-remote="true"\
+                                        rel="nofollow" data-method="post"\
+                                        href="/private/conversations/' + conversation_id + '/open">' + 
+                                            data[user].name + '\
+                                     </a>\
+                                 </li>';
+                $('#conversations-menu ul').prepend(data_attr);
+            }
+        }
+    },
+    send_message: function(message) {
+        return this.perform('send_message', {
+            message: message
+        });
+    },
+    set_as_seen: function(conv_id) {
+        return this.perform('set_as_seen', { conv_id: conv_id });
+    }
+
 });
+
 
 $(document).on('submit', '.send-private-message', function(e) {
     e.preventDefault();
@@ -55,19 +71,19 @@ $(document).on('submit', '.send-private-message', function(e) {
 });
 
 $(document).on('click', '.conversation-window, .private-conversation', function(e) {
-  var latest_message = $('.messages-list ul li:last .row div', this);
-  if (latest_message.hasClass('message-received') && latest_message.hasClass('unseen')) {
-    var conv_id = $(this).find('.panel').attr('data-pconversation-id');
-    if(conv_id == null) {
-      var conv_id = $(this).find('.messages-list').attr('data-pconversation-id');
+    var latest_message = $('.messages-list ul li:last .row div', this);
+    if (latest_message.hasClass('message-received') && latest_message.hasClass('unseen')) {
+        var conv_id = $(this).find('.panel').attr('data-pconversation-id');
+        if (conv_id == null) {
+            var conv_id = $(this).find('.messages-list').attr('data-pconversation-id');
+        }
+        latest_message.removeClass('unseen');
+        $('#menu-pc' + conv_id).removeClass('unseen-conv');
+        calculateUnseenConversations();
+        App.private_conversation.set_as_seen(conv_id);
     }
-    latest_message.removeClass('unseen');
-    $('#menu-pc' + conv_id).removeClass('unseen-conv');
-    calculateUnseenConversations();
-    App.private_conversation.set_as_seen(conv_id)
-  }
 });
 
-$(document).on('turbolinks:load', function (){
-  calculateUnseenConversations();
+$(document).on('turbolinks:load', function() {
+    calculateUnseenConversations();
 });

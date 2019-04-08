@@ -7,11 +7,11 @@
   <%= form_for(Group::Conversation.new, remote: true, class: 'form-group') do |f| %>
     <%= hidden_field_tag :creator_id, current_user.id %>
     <%= hidden_field_tag :private_conversation_id, conversation.id %>
-    <%= f.collection_select(:id,
-                            contacts_except_recipient(@recipient),
-                            :id,
-                            :name,
-                            {},
+    <%= f.collection_select(:id, 
+                            contacts_except_recipient(@recipient), 
+                            :id, 
+                            :name, 
+                            {}, 
                             {:class=>'form-control select-users-dropdown'}) %>
     <%= f.submit 'Start a conversation', class: 'form-control select-users-button' %>
   <% end %>

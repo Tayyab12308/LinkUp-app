@@ -4,16 +4,16 @@
   </div>
   <div class="request-response">
     <span class="accept-request">
-      <%= link_to "Accept",
-          contact_path(id: @recipient.id),
-          remote: true,
+      <%= link_to "Accept",  
+          contact_path(id: @recipient.id), 
+          remote: true, 
           method: "put" %>
-    </span>
+    </span>  
     <span class="decline-request">
-      <%= link_to "Decline",
-          contact_path(id: @recipient.id),
-          remote: true,
-          method: :delete %>
-    </span>
+      <%= link_to "Decline", 
+                  contact_path(id: @recipient.id), 
+                  remote: true, 
+                  method: :delete %>
+    </span>              
   </div>
 </div>
